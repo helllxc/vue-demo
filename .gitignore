@@ -1,0 +1,4 @@
+*.zip
+
+doc/
+node_modules
