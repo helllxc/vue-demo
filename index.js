@@ -13,10 +13,12 @@ Vue.use(Vuex)
 
 var store = new Vuex.Store({
     state:{
-
+        search:''
     },
     mutations:{
-
+        setSearch:function(state,data){
+            this.state.search = data;
+        }
     }
 })
 
