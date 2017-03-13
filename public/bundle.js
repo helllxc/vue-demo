@@ -12554,7 +12554,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         mounted:function () {
             this.loadMore();
-        }
+        },
+		computed:{
+            searching(){
+                return this.$store.state.search
+			}
+		}
     };
 
 
@@ -12584,7 +12589,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	/* harmony default export */ __webpack_exports__["default"] = {
 	    data:function () {
 			return{
-				isSearch:false
+				isSearch:false,
+				searching:''
 			}
         },
 		methods:{
@@ -12593,6 +12599,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
 			cancle:function () {
 				this.isSearch = false;
+            },
+            changeSearch:function () {
+				this.$store.commit('setSearch',this.searching)
             }
 		}
 	};
@@ -12707,79 +12716,7 @@ if (false) {
 /* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
-    staticClass: "weui-panel weui-panel_access"
-  }, [_c('div', {
-    staticClass: "weui-panel__hd"
-  }, [_vm._v("图文组合列表")]), _vm._v(" "), _c('div', {
-    staticClass: "weui-panel__bd"
-  }, [_vm._l((_vm.movices), function(movice) {
-    return _c('a', {
-      staticClass: "weui-media-box weui-media-box_appmsg",
-      attrs: {
-        "href": "javascript:void(0);"
-      }
-    }, [_c('div', {
-      staticClass: "weui-media-box__hd"
-    }, [_c('img', {
-      staticClass: "weui-media-box__thumb",
-      attrs: {
-        "src": movice.images.medium,
-        "alt": ""
-      }
-    })]), _vm._v(" "), _c('div', {
-      staticClass: "weui-media-box__bd"
-    }, [_c('h4', {
-      staticClass: "weui-media-box__title"
-    }, [_vm._v(_vm._s(movice.title))]), _vm._v(" "), _c('p', {
-      staticClass: "weui-media-box__desc"
-    }, [_vm._v("上映日期:" + _vm._s(movice.mainland_pubdate))])])])
-  }), _vm._v(" "), _c('div', {
-    staticClass: "weui-panel__ft"
-  }, [_c('a', {
-    staticClass: "weui-cell weui-cell_access weui-cell_link",
-    attrs: {
-      "href": "javascript:void(0);"
-    }
-  }, [_c('div', {
-    staticClass: "weui-cell__bd",
-    on: {
-      "click": function($event) {
-        _vm.loadMore()
-      }
-    }
-  }, [_vm._v("查看更多")]), _vm._v(" "), _c('span', {
-    staticClass: "weui-cell__ft"
-  })])])], 2)]), _vm._v(" "), (_vm.load) ? _c('div', {
-    staticClass: "weui-loadmore"
-  }, [_c('i', {
-    staticClass: "weui-loading"
-  }), _vm._v(" "), _c('span', {
-    staticClass: "weui-loadmore__tips"
-  }, [_vm._v("正在加载")])]) : _vm._e(), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.toast),
-      expression: "toast"
-    }],
-    attrs: {
-      "id": "loadingToast"
-    }
-  }, [_c('div', {
-    staticClass: "weui-mask_transparent"
-  }), _vm._v(" "), _vm._m(0)])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "weui-toast"
-  }, [_c('i', {
-    staticClass: "weui-loading weui-icon_toast"
-  }), _vm._v(" "), _c('p', {
-    staticClass: "weui-toast__content"
-  }, [_vm._v("数据加载中")])])
-}]}
-module.exports.render._withStripped = true
+module.exports={render:function(){},staticRenderFns:[]}
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
@@ -12807,15 +12744,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('i', {
     staticClass: "weui-icon-search"
   }), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.searching),
+      expression: "searching"
+    }],
     staticClass: "weui-search-bar__input",
     attrs: {
       "type": "search",
       "id": "search_input",
       "placeholder": "搜索"
     },
+    domProps: {
+      "value": (_vm.searching)
+    },
     on: {
       "focus": function($event) {
         _vm.search()
+      },
+      "keyup": function($event) {
+        _vm.changeSearch()
+      },
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.searching = $event.target.value
       }
     }
   }), _vm._v(" "), _c('a', {
@@ -15495,15 +15448,18 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_4_vuex
 
 var store = new __WEBPACK_IMPORTED_MODULE_4_vuex__["a" /* default */].Store({
     state:{
-
+        search:''
     },
     mutations:{
-
+        setSearch:function(state,data){
+            state.search = data;
+        }
     }
 })
 
 new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     router: __WEBPACK_IMPORTED_MODULE_2__router_router_js__["a" /* default */],
+    store
 }).$mount('#demo')
 
 /***/ })

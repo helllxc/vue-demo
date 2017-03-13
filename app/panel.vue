@@ -3,7 +3,7 @@
 		<div class="weui-panel weui-panel_access">
 			<div class="weui-panel__hd">图文组合列表</div>
 			<div class="weui-panel__bd">
-				<a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" v-for="movice in movices">
+				<a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" v-for="movice in movices|filterBy searching in 'title'">
 					<div class="weui-media-box__hd">
 						<img class="weui-media-box__thumb" :src="movice.images.medium" alt="">
 					</div>
@@ -66,6 +66,11 @@
         },
         mounted:function () {
             this.loadMore();
-        }
+        },
+		computed:{
+            searching(){
+                return this.$store.state.search
+			}
+		}
     }
 </script>

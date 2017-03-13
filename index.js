@@ -17,11 +17,12 @@ var store = new Vuex.Store({
     },
     mutations:{
         setSearch:function(state,data){
-            this.state.search = data;
+            state.search = data;
         }
     }
 })
 
 new Vue({
     router,
+    store
 }).$mount('#demo')
