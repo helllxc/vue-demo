@@ -3,11 +3,11 @@
 		<div class="weui-tab__panel">
 		</div>
 		<div class="weui-tabbar">
-			<a href="/" class="weui-tabbar__item weui-bar__item_on">
+			<a href="#/index" class="weui-tabbar__item weui-bar__item_on">
 				<img src="" alt="" class="weui-tabbar__icon">
 				<p class="weui-tabbar__label">微信</p>
 			</a>
-			<a href="/a" class="weui-tabbar__item">
+			<a href="#/a" class="weui-tabbar__item">
 				<img src="" alt="" class="weui-tabbar__icon">
 				<p class="weui-tabbar__label">通讯录</p>
 			</a>

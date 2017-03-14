@@ -5,14 +5,21 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 import index from '../app/index.vue';
-import a from '../app/a.vue'
+import a from '../app/a.vue';
+import detail from '../app/detail.vue'
 
 export default new VueRouter({
     routes:[{
-        path:'/',
+        path:'/index',
         component:index
     },{
         path:'/a',
         component:a
+    },{
+        path:'/detail/:id',
+        component:detail
+    },{
+        path:'*',
+        redirect:'/index'
     }]
 })
