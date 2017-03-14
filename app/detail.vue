@@ -8,7 +8,7 @@
 						{{news.summary}}
 					</p>
 					<p>
-						<img :src="news.images.large" @click="gallery(news.images.large)" alt="">
+						<img :src="img" @click="gallery(news.images.large)" alt="">
 						<!--&lt;!&ndash;&lt;!&ndash;<img src="images/1.jpg" @click="gallery('images/1.jpg')" alt="">&ndash;&gt;&ndash;&gt;-->
 					</p>
 				</section>
@@ -16,7 +16,7 @@
 		</article>
 		<!--<div ng-bind-html="html"></div>-->
 		<div class="weui-gallery" :isGallery ="isGallery">
-			<!--<span class="weui-gallery__img" :style="{background-image: imgUrl}"></span>-->
+			<span class="weui-gallery__img" :style="{background: 'url('+imgUrl+')'}"></span>
 			<div class="weui-gallery__opr">
 				<a href="javascript:" class="weui-gallery__del" @click="isGallery=false">
 					<i class="weui-icon-delete weui-icon_gallery-delete"></i>
@@ -34,13 +34,14 @@
                 city:"广州",
 			    id:'',
                 isGallery:false,
-			    imgUrl:''
+			    imgUrl:'',
+				img:''
 			}
         },
 		methods:{
             gallery:function (Url) {
-				this.imgUrl = 'Url("'+Url+'")'
-				console.log(this.imgUrl)
+				this.imgUrl = Url
+//				console.log(this.imgUrl)
             }
 		},
         mounted:function () {
@@ -53,6 +54,7 @@
             }).then(function(data){
                 this.news = data.data;
                 console.log(this.news)
+				this.img = this.news.images.large
 			})
         }
 	}
